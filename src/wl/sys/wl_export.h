@@ -46,7 +46,7 @@ extern void wl_devicerecovery(struct wl_info *wl );
 extern uint32 wl_pcie_bar1(struct wl_info *wl, uchar** addr);
 
 struct wl_timer;
-extern struct wl_timer *wl_init_timer(struct wl_info *wl, void (*fn)(void* arg), void *arg,
+extern struct wl_timer *wl_init_timer(struct wl_info *wl, void (*fn)(struct timer_list* arg), void *arg,
                                       const char *name);
 extern void wl_free_timer(struct wl_info *wl, struct wl_timer *timer);
 extern void wl_add_timer(struct wl_info *wl, struct wl_timer *timer, uint ms, int periodic);
