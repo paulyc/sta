@@ -26,7 +26,7 @@
 typedef struct wl_timer {
 	struct timer_list 	timer;
 	struct wl_info 		*wl;
-	void 				(*fn)(void *);
+	void 				(*fn)(struct timer_list *);
 	void				*arg; 
 	uint 				ms;
 	bool 				periodic;
