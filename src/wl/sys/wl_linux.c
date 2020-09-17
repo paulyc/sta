@@ -769,12 +769,13 @@ wl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	pci_set_master(pdev);
 
 	pci_read_config_dword(pdev, 0x40, &val);
-	if ((val & 0x0000ff00) != 0)
+	if ((val & 0x0000ff00) != 0) {
 		pci_write_config_dword(pdev, 0x40, val & 0xffff00ff);
+	}
 
-		bar1_size = pci_resource_len(pdev, 2);
-		bar1_addr = (uchar *)ioremap_cache(pci_resource_start(pdev, 2),
-			bar1_size);
+	bar1_size = pci_resource_len(pdev, 2);
+	bar1_addr = (uchar *)ioremap_cache(pci_resource_start(pdev, 2),
+		bar1_size);
 
 	wl = wl_attach(pdev->vendor, pdev->device, pci_resource_start(pdev, 0), PCI_BUS, pdev,
 		pdev->irq, bar1_addr, bar1_size);
